@@ -13,6 +13,9 @@ const store = useTodoStore()
 const todo = ref('')
 
 function addTodo() {
+  if (!todo.value)
+    return
+
   store.add({
     name: todo.value,
     status: props.type,
