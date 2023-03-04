@@ -1,5 +1,6 @@
 <script setup lang="ts">
 defineProps<{
+  id: string
   modelValue: boolean
 }>()
 
@@ -11,6 +12,7 @@ const emit = defineEmits<{
 <template>
   <div class="relative w-6 h-6">
     <input
+      :id="id"
       type="checkbox"
       class="checkbox w-full h-full rounded-full appearance-none outline-none cursor-pointer border border-light-gray checked:bg-normal-blue checked:border-normal-blue transition-colors"
       :value="modelValue"

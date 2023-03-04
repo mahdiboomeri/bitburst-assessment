@@ -6,6 +6,7 @@ import TodoItem from '../components/TodoItem.vue'
 <template>
   <div class="flex flex-col flex-grow">
     <TodoItem
+      id="hello"
       class="mt-10"
       :item="{
         createdAt: new Date(),
