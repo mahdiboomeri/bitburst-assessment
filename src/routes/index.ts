@@ -1,7 +1,9 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 const routes = [
-  { path: '/', component: () => import('./index.vue') },
+  { path: '/', redirect: { path: '/todo' } },
+  { path: '/todo', component: () => import('./todo.vue') },
+  { path: '/backlog', component: () => import('./backlog.vue') },
 ]
 
 export const router = createRouter({
