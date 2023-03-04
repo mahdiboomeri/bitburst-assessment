@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import type { Todo } from '../types/todo'
 import { formatDate } from '../composables/date'
+import { useTodoStore } from '../stores/todo.store'
 import AppCheckbox from './AppCheckbox.vue'
 
 const props = defineProps<{
@@ -9,16 +10,20 @@ const props = defineProps<{
   item: Todo
 }>()
 
-const emit = defineEmits<{
-  (event: 'changed', value: boolean): void
-}>()
-
+const store = useTodoStore()
 const isChecked = computed(() => props.item.status === 'DONE')
+
+function changed(value: boolean) {
+  if (value)
+    store.setStatus(props.id, 'DONE')
+  else
+    store.setStatus(props.id, 'PENDING')
+}
 </script>
 
 <template>
   <div class="flex items-center gap-2">
-    <AppCheckbox :id="id" class="flex-shrink-0" :model-value="isChecked" @update:model-value="(value) => emit('changed', value)" />
+    <AppCheckbox :id="id" class="flex-shrink-0" :model-value="isChecked" @update:model-value="changed" />
 
     <label :for="id" class="cursor-pointer overflow-hidden">
       <p class="text-[15px] font-normal truncate" :class="isChecked ?? 'text-dark-gray line-through'">

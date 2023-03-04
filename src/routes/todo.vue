@@ -6,13 +6,6 @@ import TodoList from '../components/TodoList.vue'
 import { useTodoStore } from '../stores/todo.store'
 
 const store = useTodoStore()
-
-function changed(id: string, value: boolean) {
-  if (value)
-    store.setStatus(id, 'DONE')
-  else
-    store.setStatus(id, 'PENDING')
-}
 </script>
 
 <template>
@@ -27,7 +20,6 @@ function changed(id: string, value: boolean) {
           <TodoItem
             :id="value.key"
             :item="value.item"
-            @changed="(checked) => changed(value.key, checked)"
           />
         </template>
       </TodoList>
@@ -39,7 +31,6 @@ function changed(id: string, value: boolean) {
       <TodoItem
         :id="value.key"
         :item="value.item"
-        @changed="(checked) => changed(value.key, checked)"
       >
         <template #actions>
           <button type="button">
