@@ -5,7 +5,6 @@ import AppLayout from './layouts/default.vue'
 
 <template>
   <AppLayout>
-    Hello
     <RouterView />
   </AppLayout>
 </template>
