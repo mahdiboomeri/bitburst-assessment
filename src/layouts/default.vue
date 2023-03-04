@@ -3,10 +3,10 @@ import AppTabs from '../components/AppTabs.vue'
 </script>
 
 <template>
-  <div class="py-[1.875rem] mx-auto w-full lg:w-2/5">
+  <div class="py-[1.875rem] mx-auto w-full lg:w-2/5 min-h-screen flex flex-col">
     <AppTabs />
 
-    <div>
+    <div class="flex-grow flex flex-col">
       <slot />
     </div>
   </div>

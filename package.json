@@ -12,11 +12,13 @@
   },
   "dependencies": {
     "pinia": "^2.0.32",
+    "uuid": "^9.0.0",
     "vue": "^3.2.45",
     "vue-router": "4"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.35.3",
+    "@types/uuid": "^9.0.1",
     "@vitejs/plugin-vue": "^4.0.0",
     "autoprefixer": "^10.4.13",
     "eslint": "^8.35.0",
