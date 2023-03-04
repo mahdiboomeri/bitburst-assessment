@@ -12,7 +12,7 @@ const store = useTodoStore()
 <template>
   <AppAccordion>
     <template #summary>
-      Done
+      {{ [...store.done].length }} Done
     </template>
 
     <template #content>
