@@ -15,10 +15,18 @@ const height = computed(() => [...props.items].length * ITEM_HEIGHT)
     tag="div"
     name="list"
     class="flex flex-col gap-4 transition-all duration-500 relative"
-    :style="{ height: `${height}px` }"
+    :style="{ height: `${height || 40}px` }"
   >
-    <div v-for="[key, item] in items" :key="key">
-      <slot name="item" :value="{ key, item }" />
+    <template
+      v-if="[...items].length > 0"
+    >
+      <div v-for="[key, item] in items" :key="key">
+        <slot name="item" :value="{ key, item }" />
+      </div>
+    </template>
+
+    <div v-else class="text-[13px] text-dark-gray text-center">
+      Wow, Such empty.
     </div>
   </TransitionGroup>
 </template>
