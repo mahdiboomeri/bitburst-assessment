@@ -14,15 +14,17 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <div class="flex gap-4">
-    <AppInput model-value="search" placeholder="Search" class="flex-grow" @update:model-value="(value) => emit('update:search', value)" />
+  <div class="flex flex-col md:flex-row gap-4">
+    <AppInput :model-value="search" placeholder="Search" class="flex-grow" @update:model-value="(value) => emit('update:search', value)" />
 
-    <AppButton intent="normal" @click="emit('nameSort')">
-      Sort by Name
-    </AppButton>
+    <div class="flex gap-4">
+      <AppButton intent="normal" @click="emit('nameSort')">
+        Sort by Name
+      </AppButton>
 
-    <AppButton intent="normal" @click="emit('dateSort')">
-      Sort by Date
-    </AppButton>
+      <AppButton intent="normal" @click="emit('dateSort')">
+        Sort by Date
+      </AppButton>
+    </div>
   </div>
 </template>

@@ -31,7 +31,7 @@ function toggleMenu() {
     <Transition name="slide-fade">
       <div
         v-if="open"
-        class="absolute right-12 top-0 w-[130px] border border-light-gray rounded-md"
+        class="absolute right-12 top-0 w-[130px] bg-white border border-light-gray rounded-md"
       >
         <div
           v-for="(action, index) in actions"

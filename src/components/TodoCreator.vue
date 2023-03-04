@@ -26,10 +26,10 @@ function addTodo() {
 </script>
 
 <template>
-  <div class="flex gap-4">
+  <div class="flex flex-wrap gap-4 max-w-full">
     <AppInput v-model="todo" type="text" placeholder="Type your todo here" class="flex-grow" @keyup.enter="addTodo" />
 
-    <AppButton intent="normal" :disabled="!todo" @click="addTodo">
+    <AppButton intent="normal" class="flex-shrink-0" :disabled="!todo" @click="addTodo">
       Add Item
     </AppButton>
   </div>
