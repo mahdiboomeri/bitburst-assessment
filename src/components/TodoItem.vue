@@ -18,10 +18,10 @@ const isChecked = computed(() => props.item.status === 'DONE')
 
 <template>
   <div class="flex items-center gap-2">
-    <AppCheckbox :id="id" :model-value="isChecked" @update:model-value="(value) => emit('changed', value)" />
+    <AppCheckbox :id="id" class="flex-shrink-0" :model-value="isChecked" @update:model-value="(value) => emit('changed', value)" />
 
-    <label :for="id" class="cursor-pointer">
-      <p class="text-[15px] font-normal" :class="isChecked ?? 'text-dark-gray line-through'">
+    <label :for="id" class="cursor-pointer overflow-hidden">
+      <p class="text-[15px] font-normal truncate" :class="isChecked ?? 'text-dark-gray line-through'">
         {{ item.name }}
       </p>
 
@@ -30,7 +30,7 @@ const isChecked = computed(() => props.item.status === 'DONE')
       </p>
     </label>
 
-    <div class="ml-auto">
+    <div class="ml-auto flex-shrink-0">
       <slot name="actions" />
     </div>
   </div>

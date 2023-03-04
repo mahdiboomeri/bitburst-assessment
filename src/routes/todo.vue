@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import AppAccordion from '../components/AppAccordion.vue'
 import TodoCreator from '../components/TodoCreator.vue'
 import TodoItem from '../components/TodoItem.vue'
 import { useTodoStore } from '../stores/todo.store'
@@ -20,23 +21,29 @@ function changed(id: string, value: boolean) {
 
 <template>
   <div class="flex flex-col flex-grow">
-    <TransitionGroup tag="div" name="list" class="bg-red-100 transition-all duration-500" :style="{ height: `${finished}px` }">
-      <div v-for="[key, item] in store.done" :key="key">
-        <TodoItem
-          :id="key"
-          :item="item"
-          class="mt-4"
-          @changed="(value) => changed(key, value)"
-        />
-      </div>
-    </TransitionGroup>
+    <AppAccordion>
+      <template #summary>
+        Done
+      </template>
 
-    <TransitionGroup tag="div" name="list" class="transition-all duration-500" :style="{ height: `${pending}px` }">
+      <template #content>
+        <TransitionGroup tag="div" name="list" class="flex flex-col gap-4 transition-all duration-500" :style="{ height: `${finished}px` }">
+          <div v-for="[key, item] in store.done" :key="key">
+            <TodoItem
+              :id="key"
+              :item="item"
+              @changed="(value) => changed(key, value)"
+            />
+          </div>
+        </TransitionGroup>
+      </template>
+    </AppAccordion>
+
+    <TransitionGroup tag="div" name="list" class="flex flex-col gap-4 mt-4 transition-all duration-500" :style="{ height: `${pending}px` }">
       <div v-for="[key, item] in store.pending" :key="key">
         <TodoItem
           :id="key"
           :item="item"
-          class="mt-4"
           @changed="(value) => changed(key, value)"
         />
       </div>
