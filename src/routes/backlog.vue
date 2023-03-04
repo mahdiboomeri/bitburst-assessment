@@ -18,13 +18,31 @@ const filteredItems = computed(() => {
   return filterMap(store.backlog, item => item.name.toLocaleLowerCase().includes(search.value))
 })
 
+function nameSort() {
+  const items = [...store.items]
+  const sorted = items.sort((a, b) => {
+    return a[1].name.localeCompare(b[1].name)
+  })
+
+  store.items = new Map(sorted)
+}
+
+function dateSort() {
+  const items = [...store.items]
+  const sorted = items.sort((a, b) => {
+    return a[1].createdAt.getTime() - b[1].createdAt.getTime()
+  })
+
+  store.items = new Map(sorted)
+}
+
 function moveTodo(key: string) {
   store.setStatus(key, 'PENDING')
 }
 </script>
 
 <template>
-  <TodoFilter v-model:search="search" class="mt-4" />
+  <TodoFilter v-model:search="search" class="mt-4" @name-sort="nameSort" @date-sort="dateSort" />
 
   <TodoList :items="filteredItems" class="mt-4">
     <template #item="{ value }">
