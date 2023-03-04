@@ -1,10 +1,7 @@
 <script setup lang="ts">
-defineProps({
-  modelValue: {
-    type: String,
-    required: true,
-  },
-})
+defineProps<{
+  modelValue: string
+}>()
 
 const emit = defineEmits<{
   (event: 'update:modelValue', value: string): void
