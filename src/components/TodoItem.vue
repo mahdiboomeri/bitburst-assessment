@@ -1,20 +1,27 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import type { Todo } from '../types/todo'
 import { formatDate } from '../composables/date'
 import AppCheckbox from './AppCheckbox.vue'
 
-defineProps<{
+const props = defineProps<{
   id: string
   item: Todo
 }>()
+
+const emit = defineEmits<{
+  (event: 'changed', value: boolean): void
+}>()
+
+const isChecked = computed(() => props.item.status === 'DONE')
 </script>
 
 <template>
   <div class="flex items-center gap-2">
-    <AppCheckbox :id="id" :model-value="false" />
+    <AppCheckbox :id="id" :model-value="isChecked" @update:model-value="(value) => emit('changed', value)" />
 
     <label :for="id" class="cursor-pointer">
-      <p class="text-[15px] font-normal">
+      <p class="text-[15px] font-normal" :class="isChecked ?? 'text-dark-gray line-through'">
         {{ item.name }}
       </p>
 

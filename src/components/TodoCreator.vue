@@ -24,7 +24,7 @@ function addTodo() {
 
 <template>
   <div class="flex gap-4">
-    <AppInput v-model="todo" type="text" placeholder="Type your todo here" class="flex-grow" />
+    <AppInput v-model="todo" type="text" placeholder="Type your todo here" class="flex-grow" @keyup.enter="addTodo" />
 
     <AppButton intent="normal" :disabled="!todo" @click="addTodo">
       Add Item
